@@ -35,9 +35,14 @@ def set_log_2_que(lstLog, queLog, maxlID):
 def set_log_2_ryslog(args):
     logger = logging.getLogger(__name__)
     for item in args:
-        logger.warning(json.dumps(item))
-
-
+        if item['sev'] == 'Info':
+            logger.info(json.dumps(item))
+        elif item['sev'] == 'Critical':
+            logger.critical(json.dumps(item))
+        elif item['sev'] == 'Warning':
+            logger.warning(json.dumps(item))
+        else:
+            logger.error(json.dumps(item))
 
 def run(name = None, queNewest = None, queLog = None):
     ## name: thomson-name
