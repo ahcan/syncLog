@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters":{ 
+        "simple": {
+            "format": "Thomson: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+        }
+    },
+    "handlers": {
+        "sys_handler": {
+            "address": "/dev/log",
+            "class": "logging.handlers.SysLogHandler",
+            "level": "WARNING",
+            "facility": "local6",
+            "formatter": "simple"
+        }
+    },
+    "root": {
+        "level": "INFO",
+        "handlers": ["sys_handler"]
+    }
+}
