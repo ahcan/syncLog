@@ -1,0 +1,8 @@
+﻿<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header></SOAP-ENV:Header>
+  <S:Body>
+    <ns13:SystemExportReq xmlns:ns13="SystemExport" Cmd="Start" JSelect="None" OpV="00.00.00" SSelect="None" WSelect="Selected workflows">
+      <ns6:WId xmlns:ns6="WorkflowGlobal">WorkflowUser_QuangTestCopy</ns6:WId>
+    </ns13:SystemExportReq>
+  </S:Body>
+</S:Envelope>

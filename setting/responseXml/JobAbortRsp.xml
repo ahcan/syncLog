@@ -1,0 +1,11 @@
+﻿<soapenv:Envelope
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <jAbort:JobAbortRsp OpV="01.00.00"
+    xmlns:jAbort="JobAbort" xmlns:mg="MalteseGlobal">
+      <mg:RspDone>
+        <mg:RspOK/>
+      </mg:RspDone>
+    </jAbort:JobAbortRsp>
+  </soapenv:Body>
+</soapenv:Envelope>

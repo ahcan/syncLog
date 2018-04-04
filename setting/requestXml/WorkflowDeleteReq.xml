@@ -1,0 +1,8 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wor="WorkflowDelete" xmlns:mal="MalteseGlobal">
+  <soapenv:Body>
+    <wor:WorkflowDeleteReq Cmd="Start" OpV="01.00.00" WId="WORKFLOW_ID" ConsistencyBL="noerror_nowarning">
+      <!--Zero or more repetitions:-->
+      <mal:CP Name="?" Value="?"/>
+    </wor:WorkflowDeleteReq>
+  </soapenv:Body>
+</soapenv:Envelope>

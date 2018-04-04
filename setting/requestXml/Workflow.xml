@@ -1,0 +1,243 @@
+﻿<Workflow  xmlns="WorkflowDesc"  name="QuangTest.test B&#xEC;nh Thu&#x1EAD;n" id="WorkflowUser_QuangTestCopy" description="" type="dynamic" priority="*" category="FPT_SD" color="153;0;153">
+  <Tasks>
+    <WorkflowRef workflowIdRef="CompTSOverIpInput" id="ID_1" comment="TS over IP input" x="25" y="601">
+      <Param name="Select source IP address" type="Boolean" value="false" publish="private"/>
+      <Param name="IP address" type="IpClient" label="IP Address Input" value="225.1.1.111#320" publish="public" ui="maltese.corto.supervisor.common.gui.workflowjobcommon.param.IpAddressParamUI"/>
+      <Param name="UDP port" type="UInt16" label="UDP Port Input" value="30120" publish="public"/>
+      <Param name="Synchro loss threshold" type="UInt16" value="8000" publish="private" unit="ms"/>
+      <Param name="Maximum TS bitrate" type="UInt64" value="60000000" publish="public" unit="bps"/>
+      <Param name="Define backup input" type="Boolean" value="false" publish="private"/>
+      <Param name="Monitoring view" type="Boolean" value="true" publish="private"/>
+      <Param name="Standard" type="String" value="MPEG-2" publish="public"/>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_2" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSAudioVideoExtractor" id="ID_15" comment="TS audio video extractor (2)" x="254" y="634">
+      <Param name="Component type" type="String" value="Audio" publish="private"/>
+      <Param name="Program number" type="UInt16" label="Program number audio" value="1" publish="public"/>
+      <Param name="PMT PID" type="UInt16" label="PMT PID audio" value="1280" publish="public"/>
+      <Param name="Component PID" type="UInt32" label="Component PID audio" value="45" publish="public"/>
+      <Param name="Align timestamps" type="Boolean" value="false" publish="private"/>
+      <Param name="Maximum number of audio channels" type="UInt32" label="Maximun number of audio channels" value="2" publish="public"/>
+      <Param name="Codec" type="String" label="Codec audio" value="AAC" publish="public"/>
+      <Param name="Language" type="String" value="Any" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_16" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_17" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="CompAudioDecoder" id="ID_18" comment="Audio decoder" x="455" y="659">
+      <Param name="Dolby Stereo downmixing" type="Boolean" value="false" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_19" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_20" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="AudioLoudnessControl" id="ID_21" comment="Audio loudness control" x="633" y="678">
+      <Param name="Loudness mode" type="String" value="Automatic loudness control" publish="private"/>
+      <Param name="Noise level" type="Double" value="-60" publish="private" unit="dB or LUFS"/>
+      <Param name="Loudness target" type="Double" value="-24" publish="private" unit="dB or LUFS"/>
+      <Param name="ALC mode" type="String" value="EBU R128" publish="private"/>
+      <Param name="Compression ratio" type="Double" value="Medium (10)" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_22" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_23" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="MPEG1Layer2Encoder" id="ID_24" comment="MPEG-1 Layer 2 encoder" x="838" y="596">
+      <Param name="Bitrate" type="UInt32" value="128000" publish="private" unit="bps"/>
+      <Param name="Stereo mode" type="String" value="Stereo" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_25" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_26" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSAudioVideoPacketizer" id="ID_27" comment="TS audio video packetizer (2)" x="1120" y="416">
+      <Param name="AAC encapsulation" type="String" value="ADTS" publish="private"/>
+      <Param name="PCR generation" type="String" value="Auto" publish="private"/>
+      <Param name="Audio encapsulation mode" type="String" value="Fixed number of frames per PES" publish="private"/>
+      <Param name="Language" type="String" value="Auto" publish="private"/>
+      <Param name="Adaptation for Anevia's external packager" type="Boolean" value="false" publish="private"/>
+      <Param name="Encoder Boundary Point" type="String" value="None" publish="private"/>
+      <Param name="Number of frames per PES" type="UInt32" value="5" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_28" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_29" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSAudioVideoExtractor" id="ID_3" comment="TS audio video extractor" x="54" y="393">
+      <Param name="Component type" type="String" value="Video" publish="private"/>
+      <Param name="Maximum format" type="String" value="PAL 576i50" publish="private"/>
+      <Param name="Program number" type="UInt16" label="Program number video" value="1" publish="public"/>
+      <Param name="PMT PID" type="UInt16" label="PMT PID video" value="1280" publish="public"/>
+      <Param name="Component PID" type="UInt32" label="Component PID video" value="42" publish="public"/>
+      <Param name="Align timestamps" type="Boolean" value="false" publish="private"/>
+      <Param name="Video compression type" type="String" value="Standard" publish="private"/>
+      <Param name="Codec" type="String" label="Codec video" value="H.264" publish="public"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_4" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_5" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="CompVideoDecoder" id="ID_6" comment="Video decoder" x="406" y="317">
+      <Param name="Support input variable frame rate" type="Boolean" value="false" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_7" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_8" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="H264AVCEncoder" id="ID_9" comment="H.264 AVC encoder" x="622" y="339">
+      <Param name="Rate Mode" type="String" value="CBR" publish="private"/>
+      <Param name="Psycho Visual Enhancement" type="String" value="ON for the best video quality" publish="private"/>
+      <Param name="Profile" type="String" value="High" publish="private"/>
+      <Param name="Mode" type="String" value="High density" publish="private"/>
+      <Param name="Delay" type="String" value="Custom" publish="private"/>
+      <Param name="Frame structure" type="String" value="Progressive" publish="private"/>
+      <Param name="Level" type="Double" value="auto" publish="private"/>
+      <Param name="Adaptive GOP" type="Boolean" value="true" publish="private"/>
+      <Param name="Display Aspect Ratio" type="String" value="auto" publish="private"/>
+      <Param name="I Period" type="UInt32" value="24" publish="private"/>
+      <Param name="Closed Caption" type="String" value="None" publish="private"/>
+      <Param name="Deblocking" type="String" value="Medium" publish="private"/>
+      <Param name="ISDB-Tb syntax" type="Boolean" value="false" publish="private"/>
+      <Param name="Decoder Delay" type="UInt32" value="1000" publish="private" unit="ms"/>
+      <Param name="Coder Delay" type="String" value="Short" publish="private"/>
+      <Param name="Bitrate" type="UInt32" value="2600000" publish="private" unit="bps"/>
+      <Param name="P Period" type="UInt32" value="8" publish="private"/>
+      <Param name="Hierarchical GOP" type="Boolean" value="true" publish="private"/>
+      <Param name="Close GOP Period" type="UInt32" value="0" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_10" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_11" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSAudioVideoPacketizer" id="ID_12" comment="TS audio video packetizer" x="1150" y="324">
+      <Param name="AAC encapsulation" type="String" value="ADTS" publish="private"/>
+      <Param name="PCR generation" type="String" value="Auto" publish="private"/>
+      <Param name="Audio encapsulation mode" type="String" value="Fixed number of frames per PES" publish="private"/>
+      <Param name="Language" type="String" value="Auto" publish="private"/>
+      <Param name="Adaptation for Anevia's external packager" type="Boolean" value="false" publish="private"/>
+      <Param name="Encoder Boundary Point" type="String" value="None" publish="private"/>
+      <Param name="Number of frames per PES" type="UInt32" value="5" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_13" cardinality="1"/>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_14" cardinality="1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSMultiplexer" id="ID_30" comment="TS multiplexer" x="1379" y="331">
+      <Param name="TS bitrate" type="UInt32" value="3000000" publish="private" unit="bps"/>
+      <Param name="TS Id" type="UInt16" value="1" publish="private"/>
+      <Param name="Standard" type="String" value="MPEG-2" publish="private"/>
+      <Param name="Generate SDT" type="Boolean" value="false" publish="private"/>
+      <Param name="PAT period" type="UInt32" value="100" publish="private" unit="ms"/>
+      <Param name="PMT period" type="UInt32" value="100" publish="private" unit="ms"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_31" cardinality="1">
+          <Param name="Input Type" type="String" value="program" publish="private"/>
+          <Param name="Program Number" type="UInt32" value="1" publish="private"/>
+          <Param name="Component PID" type="UInt32" value="42" publish="private"/>
+          <Param name="Add PMT component descriptors" type="Boolean" value="false" publish="private"/>
+          <Param name="Add PMT program descriptors" type="Boolean" value="false" publish="private"/>
+          <Param name="PMT PID" type="UInt32" value="1280" publish="private"/>
+          <Param name="PCR PID" type="UInt32" value="42" publish="private"/>
+        </InputRef>
+        <InputRef name="Input" id="ID_32" cardinality="1">
+          <Param name="Input Type" type="String" value="program" publish="private"/>
+          <Param name="Program Number" type="UInt32" value="1" publish="private"/>
+          <Param name="Component PID" type="UInt32" value="45" publish="private"/>
+          <Param name="Add PMT component descriptors" type="Boolean" value="false" publish="private"/>
+          <Param name="Add PMT program descriptors" type="Boolean" value="false" publish="private"/>
+          <Param name="PMT PID" type="UInt32" value="1280" publish="private"/>
+          <Param name="PCR PID" type="UInt32" value="auto" publish="private"/>
+        </InputRef>
+      </InputsRef>
+      <OutputsRef>
+        <OutputRef name="Output" id="ID_35" cardinality="1..1"/>
+      </OutputsRef>
+    </WorkflowRef>
+    <WorkflowRef workflowIdRef="TSOverIPStreamer" id="ID_36" comment="TS over IP streamer" x="1579" y="324">
+      <Param name="Protocol" type="String" value="TS/UDP/IP" publish="private"/>
+      <Param name="IP Address" type="IpServer" label="IP Address Output" value="225.1.4.10#320" publish="public" ui="maltese.corto.supervisor.common.gui.workflowjobcommon.param.IpAddressParamUI"/>
+      <Param name="UDP Port" type="PortServer" label="UDP Port Output" value="30120" publish="public"/>
+      <Param name="Source IP Address" type="IpAddress" value="auto" publish="private"/>
+      <Param name="VBR TS (no stuffing packets)" type="Boolean" value="false" publish="private"/>
+      <Param name="TTL" type="UInt8" value="32" publish="private"/>
+      <Param name="MTU" type="UInt32" value="1500" publish="private"/>
+      <InputsRef>
+        <InputRef name="Input" id="ID_37" cardinality="1"/>
+      </InputsRef>
+    </WorkflowRef>
+  </Tasks>
+  <Links>
+    <Link>
+      <Src idRef="ID_2"/>
+      <Dst idRef="ID_4"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_2"/>
+      <Dst idRef="ID_16"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_5"/>
+      <Dst idRef="ID_7"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_8"/>
+      <Dst idRef="ID_10"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_11"/>
+      <Dst idRef="ID_13"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_14"/>
+      <Dst idRef="ID_31"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_17"/>
+      <Dst idRef="ID_19"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_20"/>
+      <Dst idRef="ID_22"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_23"/>
+      <Dst idRef="ID_25"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_26"/>
+      <Dst idRef="ID_28"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_29"/>
+      <Dst idRef="ID_32"/>
+    </Link>
+    <Link>
+      <Src idRef="ID_35"/>
+      <Dst idRef="ID_37"/>
+    </Link>
+  </Links>
+  <Inputs/>
+  <Outputs/>
+  <Display layout="rO0ABXoAAAMrAAAABAEAAAABAAACv6ztAAV3AQBzcgAQamF2YS51dGlsLlZlY3RvctmXfVuAO68BAwADSQARY2FwYWNpdHlJbmNyZW1lbnRJAAxlbGVtZW50Q291bnRbAAtlbGVtZW50RGF0YXQAE1tMamF2YS9sYW5nL09iamVjdDt4cAAAAAAAAAAPdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhwAAAAD3QACFN0YW5kYXJkdAARSVAgQWRkcmVzcyBPdXRwdXR0AA9VRFAgUG9ydCBPdXRwdXR0ABBJUCBBZGRyZXNzIElucHV0dAAOVURQIFBvcnQgSW5wdXR0ABJNYXhpbXVtIFRTIGJpdHJhdGV0ABRQcm9ncmFtIG51bWJlciBhdWRpb3QADVBNVCBQSUQgYXVkaW90ABNDb21wb25lbnQgUElEIGF1ZGlvdAAgTWF4aW11biBudW1iZXIgb2YgYXVkaW8gY2hhbm5lbHN0AAtDb2RlYyBhdWRpb3QAFFByb2dyYW0gbnVtYmVyIHZpZGVvdAANUE1UIFBJRCB2aWRlb3QAE0NvbXBvbmVudCBQSUQgdmlkZW90AAtDb2RlYyB2aWRlb3h3gAEAClBhcmFtZXRlcnMAByMmI01haW4A/////wAAAAEAAAAAAAEAAQAZVmlldyBUaXRsZSBCYXIgUHJvcGVydGllcwABABFOb3JtYWwgUHJvcGVydGllcwABABdDbG9zZSBCdXR0b24gUHJvcGVydGllcwEAB1Zpc2libGUAAAAAc3IAEWphdmEubGFuZy5Cb29sZWFuzSBygNWc+u4CAAFaAAV2YWx1ZXhwAHdBAAAAAQASRm9jdXNlZCBQcm9wZXJ0aWVzAAEAF0Nsb3NlIEJ1dHRvbiBQcm9wZXJ0aWVzAQAHVmlzaWJsZQAAAABxAH4AFXcFAAAAAAAAAAABAAAAAQAAAAEAAAACAAAAAAH/////AAAAAQAAAAAAAQAA/////wH/////AAAAAQAAAAAAAQABABZXaW5kb3cgQXJlYSBQcm9wZXJ0aWVzAQAGSW5zZXRzAAAAAHNyAA9qYXZhLmF3dC5JbnNldHPgdjM6A+OjAwIABEkABmJvdHRvbUkABGxlZnRJAAVyaWdodEkAA3RvcHhwAAAAAAAAAAAAAAAAAAAAAHcNAQAGQm9yZGVyAAAAAHNyACF0aG9tc29uLnNraW5sZi51dGlsLk15RW1wdHlCb3JkZXKGw9ZYvoR+5wIABEkABmJvdHRvbUkABGxlZnRJAAVyaWdodEkAA3RvcHhyACFqYXZheC5zd2luZy5ib3JkZXIuQWJzdHJhY3RCb3JkZXKdXKKbavaBMwIAAHhwAAAAAAAAAAAAAAAAAAAAAHdDAAABABVUYWIgV2luZG93IFByb3BlcnRpZXMAAQAXQ2xvc2UgQnV0dG9uIFByb3BlcnRpZXMBAAdWaXNpYmxlAAAAAHNyABFqYXZhLmxhbmcuQm9vbGVhbs0gcoDVnPruAgABWgAFdmFsdWV4cAB3NAAAAAEAGURvY2tpbmcgV2luZG93IFByb3BlcnRpZXMBAA5VbmRvY2sgRW5hYmxlZAAAAABxAH4ABncXAQAQTWF4aW1pemUgRW5hYmxlZAAAAABxAH4ABncXAQAQTWluaW1pemUgRW5hYmxlZAAAAABxAH4ABncUAQANQ2xvc2UgRW5hYmxlZAAAAABxAH4ABncWAQAPUmVzdG9yZSBFbmFibGVkAAAAAHEAfgAGdxMBAAxEcmFnIEVuYWJsZWQAAAAAcQB+AAZ3EwEADERvY2sgRW5hYmxlZAAAAABxAH4ABnecAAAAAQAAAMgA/////wAAAAEAAAAAAAEAAP////8AAAAAAAAAyAD/////AAAAAQAAAAAAAQAA/////wAAAAAAAADIAf////8AAAABAAAAAAABAAD/////AAAAAAAAAMgA/////wAAAAEAAAAAAAEAAP////8AAAAAAAAAAP//////////////////////////////////////////"/>
+</Workflow>

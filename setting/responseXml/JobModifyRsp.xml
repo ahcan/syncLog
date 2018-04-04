@@ -1,0 +1,15 @@
+﻿<soapenv:Envelope
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <jModify:JobModifyRsp OpV="01.00.00"
+    xmlns:mt="MalteseTypes" xmlns:jg="JobGlobal"
+    xmlns:jModify="JobModify" xmlns:mg="MalteseGlobal">
+      <mg:RspDone>
+        <mg:RspOK>
+          <mg:RspOKRef UIdRef="ID000000"/>
+        </mg:RspOK>
+      </mg:RspDone>
+      <jg:RspJOk UId="ID000000" JId="505"/>
+    </jModify:JobModifyRsp>
+  </soapenv:Body>
+</soapenv:Envelope>

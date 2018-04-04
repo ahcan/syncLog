@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="LogsGet" xmlns:mal="MalteseGlobal" xmlns:job="JobGlobal">
+  <soapenv:Body>
+    <log:LogsGetReq Cmd="Start" OpV="01.00.00" Open="true" Close="true" Sys="true" JSelect="Selected jobs" Sev="Info to critical" Nb="100" PastCloseNb="500">
+      <job:JId>"Job ID"</job:JId>
+    </log:LogsGetReq>
+  </soapenv:Body>
+</soapenv:Envelope>

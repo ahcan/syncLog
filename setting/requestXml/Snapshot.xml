@@ -1,0 +1,20 @@
+﻿<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <S:Body>
+    <ns88:JobCreateReq xmlns:ns88="JobCreate" Cmd="Start" ConsistencyBL="noerror_nowarning" OpV="00.00.00">
+      <ns8:Job xmlns:ns8="WorkflowDesc" hasRunScale="true" name="Snapshot for @225.1.1.76#320:30120" priority="1" runScale="0.1" workflowIdRef="CompTSOverIpInput">
+        <ns8:ParamDesc name="Select source IP address" value="false"></ns8:ParamDesc>
+        <ns8:ParamDesc name="IP address" value="225.1.1.76#320"></ns8:ParamDesc>
+        <ns8:ParamDesc name="UDP port" value="30120"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Source IP address" value="1.2.3.4"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Synchro loss threshold" value="500"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Maximum TS bitrate" value="30000000"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Define backup input" value="false"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Backup input IP address" value="225.1.4.6#3"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Backup input UDP port" value="5000"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Backup input source IP address" value="1.2.3.4"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Monitoring view" value="true"></ns8:ParamDesc>
+        <ns8:ParamDesc name="Standard" value="DVB"></ns8:ParamDesc>
+      </ns8:Job>
+    </ns88:JobCreateReq>
+  </S:Body>
+</S:Envelope>

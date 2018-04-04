@@ -1,0 +1,20 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <GetMountPoints:GetMountPointsRsp xmlns:GetMountPoints="GetMountPoints" xmlns:mt="MalteseTypes" xmlns:mg="MalteseGlobal" OpV="01.00.00">
+      <mg:RspDone>
+        <mg:RspOK>
+          <mg:RspOKRef UIdRef="ID000000" />
+        </mg:RspOK>
+      </mg:RspDone>
+      <GetMountPoints:RspOkGMP UId="ID000000">
+        <GetMountPoints:MountPoint Name="Logs_Main" />
+        <GetMountPoints:MountPoint Name="Logo_Main" />
+        <GetMountPoints:MountPoint Name="BCK_Main" />
+        <GetMountPoints:MountPoint Name="Font_Main" />
+        <GetMountPoints:MountPoint Name="Video_Main" />
+        <GetMountPoints:MountPoint Name="Local" />
+        <GetMountPoints:MountPoint Name="Logo_bak" />
+      </GetMountPoints:RspOkGMP>
+    </GetMountPoints:GetMountPointsRsp>
+  </soapenv:Body>
+</soapenv:Envelope>

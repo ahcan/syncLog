@@ -1,0 +1,12 @@
+﻿<soapenv:Envelope
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:log="LogsGet" xmlns:mal="MalteseGlobal"
+xmlns:job="JobGlobal">
+  <soapenv:Body>
+    <log:LogsGetReq Cmd="Start" JSelect="JOB_SELECT" Nb="500" OpV="00.00.00" Close="CLOSE_BOOL" Open="OPEN_BOOL" PastCloseNb="500" Publish="PublishedOnly" Sev="SEVERITY" Sys="SYS_BOOL" Ver="0" />
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!--Severity: {'Info to critical', 'Warning to critical', 'Minor to critical', 'Major to critical', 'Critical'} -->
+<!--<log:LogsGetReq SimuId="?" Cmd="Start" OpV="?" Open="true" Close="false" Sys="true" Sev="Warning to critical" Publish="PublishedAndPrivate" JSelect="All jobs" Ver="0" Nb="500" PastCloseNb="0" ResXML="false" Type="false" Code="false" Params="false" PCCode="false" PCText="false" SPText="false">-->
+<!--JSelect: {'None', 'My jobs', 'Group jobs', 'All jobs', 'Selected jobss'}-->

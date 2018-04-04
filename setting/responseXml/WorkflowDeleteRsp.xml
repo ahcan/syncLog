@@ -1,0 +1,1 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">  <soapenv:Body>    <wDelete:WorkflowDeleteRsp OpV="01.00.00" xmlns:mg="MalteseGlobal" xmlns:wDelete="WorkflowDelete">      <mg:RspDone>        <mg:RspOK/>      </mg:RspDone>    </wDelete:WorkflowDeleteRsp>  </soapenv:Body></soapenv:Envelope>

@@ -1,0 +1,9 @@
+<soapenv:Envelope
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:log="LogsGet" xmlns:mal="MalteseGlobal"
+xmlns:job="JobGlobal">
+	<soapenv:Body>
+		<log:LogsGetReq Cmd="Start" OpV="01.00.00" Sev="Info to
+		critical" />
+	</soapenv:Body>
+</soapenv:Envelope>

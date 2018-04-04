@@ -1,0 +1,22 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <jGetParams:JobGetParamsRsp xmlns:mt="MalteseTypes" xmlns:mg="MalteseGlobal" xmlns:jGetParams="JobGetParams" OpV="01.00.00">
+      <mg:RspDone>
+        <mg:RspOK>
+          <mg:RspOKRef UIdRef="ID000000" />
+        </mg:RspOK>
+      </mg:RspDone>
+      <jGetParams:RspOkJGetParams UId="ID000000">
+        <wd:Job xmlns:wd="WorkflowDesc" name="Da Nang 1" priority="1" workflowIdRef="WorkflowUser_DaNang1DuplicatedMyTV" hasRunScale="false">
+          <wd:ParamDesc name="IP address" value="225.1.7.15#88" />
+          <wd:ParamDesc name="UDP port" value="30120" />
+          <wd:ParamDesc name="Define backup input" value="true" />
+          <wd:ParamDesc name="Backup input IP address" value="225.1.9.1#320" />
+          <wd:ParamDesc name="Backup input UDP port" value="30120" />
+          <wd:ParamDesc name="Logo file network storage (mounting point)" value="Logo_Main" />
+          <wd:ParamDesc name="Bitrate Out" value="3500000" />
+        </wd:Job>
+      </jGetParams:RspOkJGetParams>
+    </jGetParams:JobGetParamsRsp>
+  </soapenv:Body>
+</soapenv:Envelope>

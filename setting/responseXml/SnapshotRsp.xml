@@ -1,0 +1,25 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <jGetParams:JobGetParamsRsp OpV="01.00.00" xmlns:mt="MalteseTypes" xmlns:mg="MalteseGlobal" xmlns:jGetParams="JobGetParams">
+      <mg:RspDone>
+        <mg:RspOK>
+          <mg:RspOKRef UIdRef="ID000000"/>
+        </mg:RspOK>
+      </mg:RspDone>
+      <jGetParams:RspOkJGetParams UId="ID000000">
+        <wd:Job name="Snapshot for @225.1.1.76#320:30120" priority="1" workflowIdRef="CompTSOverIpInput" hasRunScale="true" runScale="0.1" xmlns:wd="WorkflowDesc">
+          <wd:ParamDesc name="" value="IP address = %IP address%"/>
+          <wd:ParamDesc name="" value="UDP port = %UDP port%"/>
+          <wd:ParamDesc name="Select source IP address" value="false"/>
+          <wd:ParamDesc name="IP address" value="225.1.1.76#320"/>
+          <wd:ParamDesc name="UDP port" value="30120"/>
+          <wd:ParamDesc name="Synchro loss threshold" value="500"/>
+          <wd:ParamDesc name="Maximum TS bitrate" value="30000000"/>
+          <wd:ParamDesc name="Define backup input" value="false"/>
+          <wd:ParamDesc name="Monitoring view" value="true"/>
+          <wd:ParamDesc name="Standard" value="DVB"/>
+        </wd:Job>
+      </jGetParams:RspOkJGetParams>
+    </jGetParams:JobGetParamsRsp>
+  </soapenv:Body>
+</soapenv:Envelope>

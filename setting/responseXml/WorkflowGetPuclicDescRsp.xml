@@ -1,0 +1,158 @@
+﻿<soapenv:Envelope
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <wGetPublicDesc:WorkflowGetPublicDescRsp OpV="01.00.00"
+    xmlns:mt="MalteseTypes" xmlns:mg="MalteseGlobal"
+    xmlns:wGetPublicDesc="WorkflowGetPublicDesc"
+    xmlns:wg="WorkflowGlobal">
+      <mg:RspDone>
+        <mg:RspOK>
+          <mg:RspOKRef UIdRef="ID000000"/>
+        </mg:RspOK>
+      </mg:RspDone>
+      <wg:RspWDesc UId="ID000000">
+        <wd:Workflow name="TS over IP transcode" type="realtime" priority="*" description=""
+                     id="WorkflowUser_TS over IP transcode" category="Transcoding" color="153;0;0" xmlns:wd="WorkflowDesc">
+          <wd:Param name="Input IP address" type="IpClient" publish="public" value="225.1.4.5#4"
+                    ui="maltese.corto.supervisor.common.gui.workflowjobcommon.param.IpAddressParamUI"/>
+          <wd:Param unit="bps" name="Output audio bitrate" type="UInt32" publish="public" value="128000">
+            <wd:Restriction>
+              <wd:Range min="8000" max="576000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Output video bitrate" type="UInt32" publish="public" value="1500000">
+            <wd:Restriction>
+              <wd:Range min="20000" max="12000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param name="Output IP address"
+          type="IpServer" publish="public" value="225.2.4.5#4"
+                    ui="maltese.corto.supervisor.common.gui.workflowjobcommon.param.IpAddressParamUI"/>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+            <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+              <wd:Restriction>
+                <wd:Range min="10000" max="80000000"/>
+              </wd:Restriction>
+            </wd:Param>
+            <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+              <wd:Restriction>
+                <wd:Range min="0" max="2160"/>
+              </wd:Restriction>
+
+            </wd:Param>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>       
+          <wd:Param unit="pixels" name="LOGO_Y" type="Int32" publish="public" value="30">
+            <wd:Restriction>
+              <wd:Range min="0" max="2160"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Param unit="bps" name="Bitrate_Video_P6" type="UInt32" publish="public" value="5600000">
+            <wd:Restriction>
+              <wd:Range min="10000" max="80000000"/>
+            </wd:Restriction>
+          </wd:Param>
+          <wd:Inputs/>
+          <wd:Outputs/>
+        </wd:Workflow>
+      </wg:RspWDesc>
+    </wGetPublicDesc:WorkflowGetPublicDescRsp>
+  </soapenv:Body>
+</soapenv:Envelope>
