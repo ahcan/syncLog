@@ -2,21 +2,52 @@
     "version": 1,
     "disable_existing_loggers": false,
     "formatters":{ 
-        "simple": {
-            "format": "Thomson: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+        "thomson-hcm": {
+            "format": "Thomson-HCM: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+        },
+        "thomson-hni":{
+            "format":"Thomson-HNI: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+        },
+        "thomson-lab":{
+            "format":"Thomson-LAB: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
         }
     },
     "handlers": {
-        "sys_handler": {
+        "sys_hcm_handler": {
             "address": "/dev/log",
             "class": "logging.handlers.SysLogHandler",
             "level": "WARNING",
             "facility": "local6",
-            "formatter": "simple"
+            "formatter": "thomson-hcm"
+        },
+        "sys_hni_handler":{
+            "address": "/dev/log",
+            "class": "logging.handlers.SysLogHandler",
+            "level": "WARNING",
+            "facility": "local6",
+            "formatter": "thomson-hni"
+        },
+        "sys_lab_handler":{
+            "address": "/dev/log",
+            "class": "logging.handlers.SysLogHandler",
+            "level": "WARNING",
+            "facility": "local6",
+            "formatter": "thomson-lab"
         }
     },
     "root": {
         "level": "INFO",
-        "handlers": ["sys_handler"]
+        "handlers": []
+    },
+    "loggers": {
+        "thomson-hcm": {
+            "handlers": ["sys_hcm_handler"]
+        },
+        "thomson-hni": {
+            "handlers": ["sys_hni_handler"]
+        },
+        "thomson-lab": {
+            "handlers": ["sys_lab_handler"]
+        }
     }
 }

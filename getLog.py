@@ -8,10 +8,6 @@ import json
 import logging, logging.config
 import time
 
-queLog = RabbitQueue('thomson_log')
-queNewest = RabbitQueue('newest_log')
-timeEnd = 0
-timeStart = int(round(time.time()*1000))
 def get_log(name = None):
     # name: thomson-name
     # return araay-dict
@@ -30,48 +26,58 @@ def set_log_2_que(lstLog, queLog, timeEnd, timeStart):
     for item in lstLog:
         if (item['opdate'] > timeStart and  item['opdate'] <= timeEnd) or (item['cldate'] > timeStart and item['cldate'] <= timeEnd):
             args.append(item)
-        print("opdate: %s cldate: %s---start: %s end: %s"%(item['opdate'], item['cldate'], timeStart, timeEnd))
+        args.append(item)
+        # print("opdate: %s cldate: %s---start: %s end: %s"%(item['opdate'], item['cldate'], timeStart, timeEnd))
     if len(args):
         queLog.push_queue(json.dumps(args))
-        set_log_2_ryslog(args)
     return args
 
-def set_log_2_ryslog(args):
-    logger = logging.getLogger(__name__)
-    try:
-        for item in args:
-            if item['sev'] == 'Critical':
-                print("Critical")
-                logger.critical(json.dumps(item))
-            elif item['sev'] == 'Warning' or item['sev']=='Info':
-                print("Warning")
-                logger.warning(json.dumps(item))
-            else:
-                logger.error(json.dumps(item))
-    except:
-         print("No log")
+def set_log_2_ryslog(args, name):
+    ## name handler : thomsn-name
+    logger = logging.getLogger(name)
+    if len(args):
+        try:
+            for item in args:
+                if item['sev'] == 'Critical':
+                    print("Critical")
+                    logger.critical(json.dumps(item))
+                elif item['sev'] == 'Warning' or item['sev']=='Info':
+                    print("Warning")
+                    logger.warning(json.dumps(item))
+                else:
+                    logger.error(json.dumps(item))
+        except Exception as e:
+            print e
+        return "Add log"
+    else:
+        return "No log"
 
 def run(name = None, queNewest = None, queLog = None):
     ## name: thomson-name
-    global timeStart, timeEnd
+    timeEnd = 0
+    timeStart = int(round(time.time()*1000))
+    queLog = RabbitQueue('thomson_log')
+    queNewest = RabbitQueue('newest_log')
     logs = get_log(name)
     timeEnd =int(round(time.time()*1000))
     args = set_log_2_que(logs, queLog, timeEnd, timeStart)
-    print("lenght log is added:%d"%(len(args)))
-    print("lenght log is:%d"%(len(logs)))
-    print("%s---%s"%(timeStart, timeEnd))
-    # set_log_2_ryslog(args)
+    # print("lenght log is added:%d"%(len(args)))
+    # print("lenght log is:%d"%(len(logs)))
+    # print("%s---%s"%(timeStart, timeEnd))
+    set_log_2_ryslog(args, name)
     timeStart = timeEnd
     time.sleep(5)
 
-def main():
-    name = 'thomson-hni'
-    i =0
-    while 1:
-       run(name = name, queNewest = queNewest, queLog = queLog)
-       print "finish"
-       i +=1
-       print i
+def work_thread(hostname = None, queLog = None, queNewest = None):
+    while True:
+        run(name = hostname, queNewest=queNewest, queLog=queLog)
+        print("%s finsh!!"%(hostname))
 
 if __name__ == '__main__':
-    main()
+    threads = []
+    for item in settings.THOMSON_HOST:
+        print type(item)
+        threads.append(threading.Thread(target=work_thread, kwargs={'hostname': item}))
+    for thread in threads:
+        # thread.daemon = True
+        thread.start()
