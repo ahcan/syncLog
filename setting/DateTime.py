@@ -36,3 +36,11 @@ class DateTime:
     def get_year(self):
         now =  datetime.now()
         return str(now.year)
+
+    def convert_unix_timestap_2_human(self, unix_time):
+        try:
+            if unix_time > 1000000000000:
+                unix_time = unix_time / 1000
+            return datetime.datetime.strftime(datetime.datetime.fromtimestamp(unix_time), "%d-%m-%Y %H:%M:%S")
+        except Exception as e:
+            return None

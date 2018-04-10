@@ -2,14 +2,23 @@
 THOMSON_HOST={
     'thomson-hcm':
     {
-        'host'  :   '172.29.3.189'
+        'user' : 'iptv_tool',
+        'passwd' : '123456',
+        'host'  :   '172.29.3.189',
+        'url' : 'http://%s/services/Maltese' % ('172.29.3.189'),
     },
     'thomson-hni':
     {
-        'host'  :   '172.29.70.189'
+        'user' : 'iptv_tool',
+        'passwd' : '123456',
+        'host'  :   '172.29.70.189',
+        'url' : 'http://%s/services/Maltese' % ('172.29.70.189'),
     },
     'thomson-lab':
     {
-        'host'  : '172.17.5.110'
+        'user' : 'iptv_tool',
+        'passwd' : '123456',
+        'host'  : '172.17.5.110',
+        'url' : 'http://%s/services/Maltese' % ('172.17.5.110')
     }
 }

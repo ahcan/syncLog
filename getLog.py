@@ -26,7 +26,7 @@ def set_log_2_que(lstLog, queLog, timeEnd, timeStart):
     for item in lstLog:
         if (item['opdate'] > timeStart and  item['opdate'] <= timeEnd) or (item['cldate'] > timeStart and item['cldate'] <= timeEnd):
             args.append(item)
-        args.append(item)
+        #args.append(item)
         # print("opdate: %s cldate: %s---start: %s end: %s"%(item['opdate'], item['cldate'], timeStart, timeEnd))
     if len(args):
         queLog.push_queue(json.dumps(args))
@@ -39,10 +39,10 @@ def set_log_2_ryslog(args, name):
         try:
             for item in args:
                 if item['sev'] == 'Critical':
-                    print("Critical")
+                    #print("Critical")
                     logger.critical(json.dumps(item))
                 elif item['sev'] == 'Warning' or item['sev']=='Info':
-                    print("Warning")
+                    #print("Warning")
                     logger.warning(json.dumps(item))
                 else:
                     logger.error(json.dumps(item))
@@ -52,31 +52,32 @@ def set_log_2_ryslog(args, name):
     else:
         return "No log"
 
-def run(name = None, queNewest = None, queLog = None):
+def run(name = None, queNewest = None, queLog = None, timeStart = 0):
     ## name: thomson-name
-    timeEnd = 0
-    timeStart = int(round(time.time()*1000))
     queLog = RabbitQueue('thomson_log')
     queNewest = RabbitQueue('newest_log')
     logs = get_log(name)
     timeEnd =int(round(time.time()*1000))
     args = set_log_2_que(logs, queLog, timeEnd, timeStart)
-    # print("lenght log is added:%d"%(len(args)))
-    # print("lenght log is:%d"%(len(logs)))
+    print ("host: %s"%(name))
+    print("lenght log is added:%d"%(len(args)))
+    print("lenght log is:%d"%(len(logs)))
     # print("%s---%s"%(timeStart, timeEnd))
     set_log_2_ryslog(args, name)
-    timeStart = timeEnd
+    # timeStart = timeEnd
     time.sleep(5)
+    return timeEnd
 
 def work_thread(hostname = None, queLog = None, queNewest = None):
+    timeStart = int(round(time.time()*1000))
     while True:
-        run(name = hostname, queNewest=queNewest, queLog=queLog)
+        timeStart =  run(name = hostname, queNewest=queNewest, queLog=queLog, timeStart = timeStart)
+        #timeStart = timeTMP
         print("%s finsh!!"%(hostname))
 
 if __name__ == '__main__':
     threads = []
     for item in settings.THOMSON_HOST:
-        print type(item)
         threads.append(threading.Thread(target=work_thread, kwargs={'hostname': item}))
     for thread in threads:
         # thread.daemon = True
