@@ -52,12 +52,12 @@ def set_log_2_ryslog(args, name):
     else:
         return "No log"
 
-def run(name = None, queNewest = None, queLog = None, timeStart = 0):
+def run(name = None, queNewest = None, queLog = None, timeStart = 0, timeEnd = 0):
     ## name: thomson-name
     queLog = RabbitQueue('thomson_log')
     queNewest = RabbitQueue('newest_log')
     logs = get_log(name)
-    timeEnd =int(round(time.time()*1000))
+    # timeEnd =int(round(time.time()*1000))
     args = set_log_2_que(logs, queLog, timeEnd, timeStart)
     print ("host: %s"%(name))
     print("lenght log is added:%d"%(len(args)))
@@ -65,20 +65,28 @@ def run(name = None, queNewest = None, queLog = None, timeStart = 0):
     # print("%s---%s"%(timeStart, timeEnd))
     set_log_2_ryslog(args, name)
     # timeStart = timeEnd
-    time.sleep(5)
+    # time.sleep(5)
+    print("%s finish!!"%(name))
     return timeEnd
 
-def work_thread(hostname = None, queLog = None, queNewest = None):
-    timeStart = int(round(time.time()*1000))
-    while True:
-        timeStart =  run(name = hostname, queNewest=queNewest, queLog=queLog, timeStart = timeStart)
+def work_thread(hostname = None, queLog = None, queNewest = None, timeStart = 0):
+    # while True:
+    timeStart =  run(name = hostname, queNewest=queNewest, queLog=queLog, timeStart = timeStart)
         #timeStart = timeTMP
-        print("%s finsh!!"%(hostname))
-
+    # print("%s finsh!!"%(hostname))
+queTimeStart = RabbitQueue('time_log_start')
+queTimeEnd = RabbitQueue('time_log_end')
 if __name__ == '__main__':
     threads = []
+    if queTimeStart.get_queue(no_ack=False):
+        timeStart = queTimeStart.get_queue()
+    else:
+        timeStart = int(time.time()*1000)
+    timeEnd = timeStart + 3000
+    queTimeStart.push_queue(timeEnd)
     for item in settings.THOMSON_HOST:
-        threads.append(threading.Thread(target=work_thread, kwargs={'hostname': item}))
+        threads.append(threading.Thread(target=run, kwargs={'name': item, 'timeStart': timeStart, 'timeEnd': timeEnd}))
     for thread in threads:
-        # thread.daemon = True
+        thread.daemon = True
+        thread.join()
         thread.start()
