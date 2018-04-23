@@ -19,12 +19,12 @@ class RabbitQueue:
         self.connection.close()
         return ""
 
-    def get_queue(self):
+    def get_queue(self, no_ack = True):
         self.__connect__()
         self.channel = self.connection.channel()
         result = []
         for i in range(self.queue.method.message_count):
-            body = self.channel.basic_get(queue=self.routing_key, no_ack=True) # get queue basic with single queue
+            body = self.channel.basic_get(queue=self.routing_key, no_ack=no_ack) # get queue basic with single queue
             result.append(body)
         self.connection.close()
         return result
