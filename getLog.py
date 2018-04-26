@@ -78,15 +78,21 @@ queTimeStart = RabbitQueue('time_log_start')
 queTimeEnd = RabbitQueue('time_log_end')
 if __name__ == '__main__':
     threads = []
+    #try:
+    #    print(queTimeStart.get_queue(no_ack=False)[0][2])
+    #except:
+    #    print('no')
     if queTimeStart.get_queue(no_ack=False):
-        timeStart = queTimeStart.get_queue()
+        timeStart = int(queTimeStart.get_queue(no_ack=True)[0][2])
     else:
         timeStart = int(time.time()*1000)
-    timeEnd = timeStart + 3000
-    queTimeStart.push_queue(timeEnd)
+    time.sleep(2)
+    timeEnd = int(time.time()*1000)
+    queTimeStart.push_queue(str(timeEnd))
     for item in settings.THOMSON_HOST:
         threads.append(threading.Thread(target=run, kwargs={'name': item, 'timeStart': timeStart, 'timeEnd': timeEnd}))
     for thread in threads:
         thread.daemon = True
-        thread.join()
         thread.start()
+        thread.join()
+    print('start: %s - end:%s'%(timeStart, timeEnd))

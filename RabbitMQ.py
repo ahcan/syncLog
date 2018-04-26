@@ -26,5 +26,6 @@ class RabbitQueue:
         for i in range(self.queue.method.message_count):
             body = self.channel.basic_get(queue=self.routing_key, no_ack=no_ack) # get queue basic with single queue
             result.append(body)
+            #print type( body)
         self.connection.close()
         return result

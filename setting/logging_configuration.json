@@ -1,15 +1,15 @@
 {
     "version": 1,
-    "disable_existing_loggers": false,
+    "disable_existing_loggers": true,
     "formatters":{ 
         "thomson-hcm": {
-            "format": "Thomson-HCM: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+            "format": "thomson-hcm: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
         },
         "thomson-hni":{
-            "format":"Thomson-HNI: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+            "format":"thomson-hni: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
         },
         "thomson-lab":{
-            "format":"Thomson-LAB: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+            "format":"thomson-lab: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
         }
     },
     "handlers": {
