@@ -40,7 +40,7 @@
         "runing_handler":{
             "class": "logging.FileHandler",
             "level": "INFO",
-            "formatter": "log-rung",
+            "formatter": "log-run",
             "filename": "log/syncLog-thomson.log",
             "encoding": "utf8"
         }
