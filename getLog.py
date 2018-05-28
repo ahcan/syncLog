@@ -69,12 +69,12 @@ def set_log_2_ryslog(args, name):
     else:
         return "No log"
 
-def run(name = None, queNewest = None, queLog = None, timeStart = 0, timeEnd = 0):
+def run(name = None, queNewest = None, queLog = None, timeStart = 0, timeEnd = 0, logger = None):
     """
     name: thomson-name
     """
-    logger = logging.getLogger('log-run') #write log for running scripts
-    logger.setLevel(logging.INFO)
+    #write log for running scripts
+    # logger = logging.getLogger('log-run')
     queLog = RabbitQueue('thomson_log')
     queNewest = RabbitQueue('newest_log')
     logs = get_log(name)
@@ -112,7 +112,7 @@ if __name__ == '__main__':
     timeEnd = int(time.time()*1000)
     queTimeStart.push_queue(str(timeEnd))
     for item in settings.THOMSON_HOST:
-        threads.append(threading.Thread(target=run, kwargs={'name': item, 'timeStart': timeStart, 'timeEnd': timeEnd}))
+        threads.append(threading.Thread(target=run, kwargs={'name': item, 'timeStart': timeStart, 'timeEnd': timeEnd, 'logger': logger}))
     for thread in threads:
         thread.daemon = True
         thread.start()
