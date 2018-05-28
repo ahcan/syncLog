@@ -1,4 +1,5 @@
 import pika
+from setting.settings import SOCKET as sk
 
 pika.BasicProperties
 class RabbitQueue:
@@ -6,7 +7,8 @@ class RabbitQueue:
         self.routing_key = route_key
 
     def __connect__(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        credentials = pika.PlainCredentials(sk["USER"], sk["PASSWD"])
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(sk["HOST"],sk["PORT"],'/',credentials))
         self.channel = self.connection.channel()
         self.queue = self.channel.queue_declare(queue= self.routing_key)
 

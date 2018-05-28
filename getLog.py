@@ -28,8 +28,8 @@ def set_log_2_que(lstLog, queLog, timeEnd, timeStart):
             args.append(item)
         #args.append(item)
         # print("opdate: %s cldate: %s---start: %s end: %s"%(item['opdate'], item['cldate'], timeStart, timeEnd))
-    # if len(args):
-    #     queLog.push_queue(json.dumps(args)) add to queue
+    if len(args):
+        queLog.push_queue(json.dumps(args)) #add to queue
     return args
 
 def set_log_2_ryslog(args, name):

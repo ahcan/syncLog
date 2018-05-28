@@ -22,3 +22,9 @@ THOMSON_HOST={
         'url' : 'http://%s/services/Maltese' % ('172.17.5.110')
     }
 }
+SOCKET = {
+    "HOST"                  :"42.117.9.99",
+    "PORT"                  :5672,
+    "USER"                  :"monitor",
+    "PASSWD"                :"iptv13579"
+    }
