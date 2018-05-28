@@ -74,6 +74,7 @@ def run(name = None, queNewest = None, queLog = None, timeStart = 0, timeEnd = 0
     name: thomson-name
     """
     logger = logging.getLogger('log-run') #write log for running scripts
+    logger.setLevel(logging.INFO)
     queLog = RabbitQueue('thomson_log')
     queNewest = RabbitQueue('newest_log')
     logs = get_log(name)
