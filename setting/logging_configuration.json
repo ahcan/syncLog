@@ -10,6 +10,9 @@
         },
         "thomson-lab":{
             "format":"thomson-lab: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
+        },
+        "log-run":{
+            "format":"syncLog-Thomson: date: %(acstime)s - %(name)s - %(level)s - message: %(message)s"
         }
     },
     "handlers": {
@@ -33,6 +36,13 @@
             "level": "WARNING",
             "facility": "local6",
             "formatter": "thomson-lab"
+        },
+        "runing_handler":{
+            "class": "logging.FileHandler",
+            "level": "INFO",
+            "formatter": "log-rung",
+            "filename": "log/syncLog-thomson.log",
+            "encoding": "utf8"
         }
     },
     "root": {
@@ -48,6 +58,9 @@
         },
         "thomson-lab": {
             "handlers": ["sys_lab_handler"]
+        },
+        "log-run": {
+            "handlers": ["runing_handler"]
         }
     }
 }
