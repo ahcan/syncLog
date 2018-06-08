@@ -335,8 +335,8 @@ class Log:
                         'nid'              : int(NId),
                         'sev'              : Sev,
                         'desc'             : Desc,
-                        'opdate'           : int(OpDate) if OpDate else None,
-                        'cldate'           : int(ClDate) if ClDate else None
+                        'opdate'           : int(OpDate[:10]) if OpDate else None,
+                        'cldate'           : int(ClDate[:10]) if ClDate else None
                 })
         return args
 
