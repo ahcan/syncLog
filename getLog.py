@@ -36,7 +36,7 @@ def get_arry_logs(lstLog, timeEnd, timeStart):
     """
     args = []
     for item in lstLog:
-        if (item['opdate'] > timeStart and  item['opdate'] <= timeEnd) or (item['cldate'] > timeStart and item['cldate'] <= timeEnd):
+        if (item['opdate'] >= timeStart and  item['opdate'] < timeEnd) or (item['cldate'] >= timeStart and item['cldate'] < timeEnd):
             args.append(item)
     return args
 
@@ -106,10 +106,10 @@ if __name__ == '__main__':
     if queTimeStart.get_queue(no_ack=False):
         timeStart = int(queTimeStart.get_queue(no_ack=True)[0][2])
     else:
-        timeStart = int(time.time()*1000)
+        timeStart = int(time.time())
     time.sleep(2)
     logger = logging.getLogger('log-run')
-    timeEnd = int(time.time()*1000)
+    timeEnd = int(time.time())
     queTimeStart.push_queue(str(timeEnd))
     for item in settings.THOMSON_HOST:
         threads.append(threading.Thread(target=run, kwargs={'name': item, 'timeStart': timeStart, 'timeEnd': timeEnd}))
