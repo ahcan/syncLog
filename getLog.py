@@ -41,13 +41,18 @@ def get_arry_logs(lstLog, timeEnd, timeStart):
     return args
 
 def set_log_2_que(lstLog, queLog):
+    logerror = logging.getLogger("log-rabbit")
     if len(lstLog):
         for item in lstLog:
             args = []
             args.append(item)
             #args.append(item)
             # print("opdate: %s cldate: %s---start: %s end: %s"%(item['opdate'], item['cldate'], timeStart, timeEnd))
-            queLog.push_queue(json.dumps(args)) #add to queue
+            try:
+                queLog.push_queue(json.dumps(args)) #add to queue
+            except Exception as e:
+                logerror.error("Push rabbitmq %s"%(e))
+
 
 def set_log_2_ryslog(args, name):
     ## name handler : thomsn-name

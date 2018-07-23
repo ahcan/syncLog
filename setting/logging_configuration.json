@@ -43,6 +43,13 @@
             "formatter": "log-run",
             "filename": "log/syncLog-thomson.log",
             "encoding": "utf8"
+        },
+        "rabbit_handler":{
+            "class": "logging.FileHandler",
+            "level": "INFO",
+            "formatter": "log-run",
+            "filename": "log/rabbit.log",
+            "encoding": "utf8"
         }
     },
     "root": {
@@ -61,6 +68,9 @@
         },
         "log-run": {
             "handlers": ["runing_handler"]
+        },
+        "log-rabbit":{
+            "handlers": ["rabbit_handler"]
         }
     }
 }
