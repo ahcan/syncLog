@@ -12,7 +12,7 @@
             "format":"thomson-lab: date: %(asctime)s - serverity: %(levelname)s - message: %(message)s"
         },
         "log-run":{
-            "format":"syncLog-Thomson: date: %(asctime)s - %(name)s - %(levelname)s - message: %(message)s"
+            "format":"syncLog-Thomson: date: %(asctime)s - %(levelname)s - message: %(message)s"
         }
     },
     "handlers": {
